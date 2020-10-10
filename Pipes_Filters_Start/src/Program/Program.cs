@@ -22,13 +22,13 @@ namespace CompAndDel
             pipeFirst.Send(picture);
             
             // Ejercicio 2
-            pictureProv.SavePicture(picture, @"C:\Users\valeb\OneDrive\Escritorio\ucu\Programacion\repositorios\Pipes_Filters_Start\Pipes_Filters_Start\src\Program");
+            pictureProv.SavePicture(picture, @"wade1.png");
             pipeFirst = new PipeSerial(filtro1, pipeFinal);
             picture = pipeFirst.Send(picture);
-            pictureProv.SavePicture(picture, @"C:\Users\valeb\OneDrive\Escritorio\ucu\Programacion\repositorios\Pipes_Filters_Start\Pipes_Filters_Start\src\Program");
+            pictureProv.SavePicture(picture, @"wade2.png");
             pipeFirst = new PipeSerial(filtro1, pipe2);
             picture = pipeFirst.Send(picture);
-            pictureProv.SavePicture(picture, @"C:\Users\valeb\OneDrive\Escritorio\ucu\Programacion\repositorios\Pipes_Filters_Start\Pipes_Filters_Start\src\Program");
+            pictureProv.SavePicture(picture, @"wade3.png");
 
         }
     }
