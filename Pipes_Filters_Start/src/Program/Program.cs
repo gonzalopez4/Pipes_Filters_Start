@@ -1,6 +1,7 @@
 ﻿using System;
 using CompAndDel.Filters;
 using CompAndDel.Pipes;
+using TwitterUCU;
 
 namespace CompAndDel
 {
@@ -19,17 +20,43 @@ namespace CompAndDel
             IPipe pipe2 = new PipeSerial(filtro2, pipeFinal);
             IPipe pipeFirst = new PipeSerial(filtro1, pipe2);
 
-            pipeFirst.Send(picture);
+            // pipeFirst.Send(picture);
             
             // Ejercicio 2
-            pictureProv.SavePicture(picture, @"wade1.png");
-            pipeFirst = new PipeSerial(filtro1, pipeFinal);
-            picture = pipeFirst.Send(picture);
-            pictureProv.SavePicture(picture, @"wade2.png");
-            pipeFirst = new PipeSerial(filtro1, pipe2);
-            picture = pipeFirst.Send(picture);
-            pictureProv.SavePicture(picture, @"wade3.png");
+            IFilter guardar = new Persistent();
+            
+            IPipe pipe5 = new PipeSerial(guardar, pipeFinal);
+            IPipe pipe4 = new PipeSerial(filtro2, pipe5);
+            IPipe pipe3 = new PipeSerial(guardar, pipe4);
+            pipe2 = new PipeSerial(filtro1, pipe3);
+            pipeFirst = new PipeSerial(guardar, pipe2);
 
+            // pipeFirst.Send(picture);
+
+            // Ejercicio 3
+            IFilter publish = new Publish();
+            
+            IPipe pipe8 = new PipeSerial(publish, pipeFinal);
+            IPipe pipe7 = new PipeSerial(guardar, pipe8);
+            IPipe pipe6 = new PipeSerial(filtro2, pipe7);
+            pipe5 = new PipeSerial(publish, pipe6);
+            pipe4 = new PipeSerial(guardar, pipe5);
+            pipe3 = new PipeSerial(filtro1, pipe4);
+            pipe2 = new PipeSerial(publish, pipe3);
+            pipeFirst = new PipeSerial(guardar, pipe2);
+
+            // pipeFirst.Send(picture);
+
+            // Ejercicio 4
+            IFilterConditional filtro3 = new FilterConditional();
+            
+            pipe4 = new PipeSerial(guardar, pipeFinal);
+            IPipe pipeB = new PipeSerial(filtro2, pipe4);
+            IPipe pipeA = new PipeSerial(filtro1, pipe4);
+            pipe2 = new PipeConditional(filtro3, pipeA, pipeB);
+            pipeFirst = new PipeSerial(guardar, pipe2);
+            
+            pipeFirst.Send(picture);
         }
     }
 }
