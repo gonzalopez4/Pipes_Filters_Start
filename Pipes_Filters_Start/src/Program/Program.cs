@@ -20,7 +20,7 @@ namespace CompAndDel
             IPipe pipe2 = new PipeSerial(filtro2, pipeFinal);
             IPipe pipeFirst = new PipeSerial(filtro1, pipe2);
 
-            // pipeFirst.Send(picture);
+            pipeFirst.Send(picture);
             
             // Ejercicio 2
             IFilter guardar = new Persistent();
@@ -31,7 +31,7 @@ namespace CompAndDel
             pipe2 = new PipeSerial(filtro1, pipe3);
             pipeFirst = new PipeSerial(guardar, pipe2);
 
-            // pipeFirst.Send(picture);
+            pipeFirst.Send(picture); //hay que comentar los Send, para que se ejecute solo el del ejercicio que se quiera probar
 
             // Ejercicio 3
             IFilter publish = new Publish();
@@ -45,7 +45,7 @@ namespace CompAndDel
             pipe2 = new PipeSerial(publish, pipe3);
             pipeFirst = new PipeSerial(guardar, pipe2);
 
-            // pipeFirst.Send(picture);
+            pipeFirst.Send(picture);
 
             // Ejercicio 4
             IFilterConditional filtro3 = new FilterConditional();

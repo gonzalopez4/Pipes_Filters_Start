@@ -18,7 +18,7 @@ namespace CognitiveCoreUCU
     public class CognitiveFace
     {
         // Replace <Subscription Key> with your valid subscription key.
-        string subscriptionKey = "";
+        string subscriptionKey = "620e818a46524ceb92628cde08068242";
 
         // NOTE: You must use the same region in your REST call as you used to
         // obtain your subscription keys. For example, if you obtained your

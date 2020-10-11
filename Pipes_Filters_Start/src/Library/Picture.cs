@@ -8,6 +8,8 @@ namespace CompAndDel
 {
     public class Picture : IPicture
     {
+        public string Path { get; set; }
+
         private Color[,] matrizColores;
        
         /// <summary>
@@ -90,7 +92,7 @@ namespace CompAndDel
         /// <returns>Clon de la imagen</returns>
         public IPicture Clone()
         {
-            Picture pictureClone = new Picture(this.Width, this.Height);
+            IPicture pictureClone = new Picture(this.Width, this.Height);
             for (int x = 0; x < pictureClone.Width; x++)
             {
                 for (int y = 0; y < pictureClone.Height; y++)
@@ -98,6 +100,7 @@ namespace CompAndDel
                     pictureClone.SetColor(x, y, this.matrizColores[x,y]);
                 }
             }
+            pictureClone.Path = this.Path;
             return pictureClone;
         }
     }
